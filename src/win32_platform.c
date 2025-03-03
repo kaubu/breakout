@@ -1,9 +1,30 @@
 #include <windows.h>
 
-LRESULT CALLBACK window_callback(HWND window, UINT message,
+typedef int b32;
+
+#define true 1
+#define false 0
+
+#define global_variable static
+#define internal static
+
+global_variable b32 running = true;
+
+internal LRESULT CALLBACK window_callback(HWND window, UINT message,
                         WPARAM w_param, LPARAM l_param)
 {
-    return DefWindowProcA(window, message, w_param, l_param);
+    LRESULT result = 0;
+
+    switch (message) {
+        case WM_CLOSE:
+        case WM_DESTROY:
+            running = false;
+            break;
+        default:
+            result = DefWindowProcA(window, message, w_param, l_param);
+    }
+
+    return result;
 }
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -21,4 +42,20 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                                     CW_USEDEFAULT, CW_USEDEFAULT,
                                     1280, 720,
                                     0, 0, 0, 0);
+    
+    while (running) {
+        // Input
+        MSG message;
+        while (PeekMessageA(&message, window, 0, 0, PM_REMOVE)) {
+            // For every message, do X
+            TranslateMessage(&message);
+            DispatchMessage(&message);
+        }
+
+        // Simulationn
+
+
+        // Render
+
+    }
 }
