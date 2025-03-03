@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/User/Documents/Coding/breakout/code",
-      "program": "c:/Users/User/Documents/Coding/breakout/code/build/Debug/outDebug",
+      "cwd": "c:/Users/User/Documents/Coding/breakout/src",
+      "program": "c:/Users/User/Documents/Coding/breakout/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
